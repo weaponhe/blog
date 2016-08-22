@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Full example - Editor.md examples</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+    <style type="text/css">
+    #meta {
+        position: absolute;
+        top: 15px;
+        bottom: 5px;
+        left: 15px;
+        right: 0;
+        height: 40px;
+    }
+    
+    #editor {
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="meta">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" id="titleInput" name="title" placeholder="请输入文章标题">
+                </div>
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" id="tagsInput" name="tags" placeholder="输入标签，多个标签用逗号分隔">
+                </div>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" id="introInput" name="intro" placeholder="输入引言">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editor"></div>
+    <script src="/libs/editor.md/examples/js/jquery.min.js"></script>
+    <script src="/libs/editor.md/editormd.js"></script>
+    <script type="text/javascript">
+    var editor;
+    $(function() {
+        editor = editormd('editor', {
+            weight: "100%",
+            height: "100%",
+            path: "/libs/editor.md/lib/",
+            saveHTMLToTextarea: true,
+            emoji: true,
+            taskList: true,
+            tocm: true,
+            tex: true, // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true, // 开启流程图支持，默认关闭
+            sequenceDiagram: true, // 开启时序/
+            toolbarIcons: function() {
+                return ["undo", "redo", "|",
+                    "ucwords", "uppercase", "lowercase", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "code-block", "table", "emoji", "html-entities", "|",
+                    "watch", "preview", "fullscreen", "search", "help", "||", "save"
+                ]
+            },
+            toolbarIconsClass: {
+                save: "fa-check"
+            },
+            toolbarHandlers: {
+                save: function(cm, icon, cursor, selection) {
+                    var title = $("#titleInput").val();
+                    var tags = $("#tagsInput").val();
+                    var intro = $("#introInput").val();
+                    var md = editor.getMarkdown();
+                    var html = editor.getHTML();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/admin/post',
+                        data: {
+                            title: title,
+                            tags: tags,
+                            intro: intro,
+                            md: md,
+                            html: html
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        },
+                        error: function(data) {
+                            console.log('err', data);
+                        },
+                        dataType: 'json'
+                    });
+                }
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<%- include header %>
+<link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+<h1 class="post-title" style="border-bottom:1px dashed #eee;padding-bottom:10px;margin-bottom:10px">
+	<%= post.title %>	
+</h1>
+<div>
+tags:
+<% post.tags.forEach(function(tag){ %>
+	<a href="/tags/<%= tag %>"><%= tag %></a>
+<% }) %>
+ |
+<%= post.time.getFullYear() %>-<%= post.time.getMonth()+1 %>-<%= post.time.getDate() %> <%= post.time.getHours() %>:<%= post.time.getMinutes() %>:<%= post.time.getSeconds() %>
+</div>
+<div id="test-editormd-view" class="markdown-body editormd-html-preview">
+  <%- post.html %>          
+</div>
+<%- include footer %>
