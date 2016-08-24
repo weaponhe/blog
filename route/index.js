@@ -23,7 +23,27 @@ module.exports = function(app) {
 
 	app.get('/archive', function(req, res) {
 		Post.getArchive(function(err, posts) {
+			res.render('archive', {
+				title: "归档",
+				posts: posts
+			});
+		});
+	});
 
+	app.get('/tags/:tag', function(req, res) {
+		var tag = req.params.tag;
+		if (!tag) {
+			tag = 'Javascript';
+		}
+		Post.getTags(function(err, tags) {
+			Post.getPostByTag(tag, function(err, posts) {
+				console.log(posts);
+				res.render('tags', {
+					title: "分类",
+					tags: tags,
+					posts: posts
+				});
+			});
 		});
 	});
 

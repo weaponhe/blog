@@ -127,3 +127,23 @@ Post.getArchive = function(callback) {
 		});
 	});
 };
+
+Post.getPostByTag = function(tag, callback) {
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		var col = db.collection('posts');
+		col.find({
+			tags: tag
+		}).sort({
+			time: -1
+		}).toArray(function(err, docs) {
+			db.close();
+			if (err) {
+				return callback(err);
+			}
+			callback(null, docs);
+		});
+	});
+};
