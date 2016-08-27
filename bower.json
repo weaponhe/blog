@@ -1,0 +1,27 @@
+{
+  "name": "blog",
+  "description": "my blog based on nodejs",
+  "main": "app.js",
+  "authors": [
+    "weaponhe"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "blog",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/weaponhe/blog",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "font-awesome": "Font-Awesome#^4.6.3",
+    "editor.md": "^1.5.0"
+  }
+}
