@@ -40,6 +40,23 @@ Post.prototype.save = function(callback) {
 	});
 };
 
+Post.getAll = function(callback) {
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		var col = db.collection('posts');
+		col.find().sort({
+			time: -1
+		}).toArray(function(err, docs) {
+			if (err) {
+				return callback(err);
+			}
+			callback(null, docs);
+		});
+	});
+};
+
 Post.getLatestTen = function(callback) {
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
@@ -144,6 +161,51 @@ Post.getPostByTag = function(tag, callback) {
 				return callback(err);
 			}
 			callback(null, docs);
+		});
+	});
+};
+
+
+Post.deleteOne = function(_id, callback) {
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		var col = db.collection('posts');
+		col.deleteOne({
+			_id: ObjectId(_id)
+		}, function(err, r) {
+			db.close();
+			if (err) {
+				return callback(err);
+			}
+			callback(null, true);
+		});
+	});
+};
+
+Post.update = function(_id, post, callback) {
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		var col = db.collection('posts');
+		col.findOneAndUpdate({
+			_id: ObjectId(_id)
+		}, {
+			$set: {
+				title: post.title,
+				tags: post.tags.split(','),
+				intro: post.intro,
+				md: post.md,
+				html: post.html
+			}
+		}, function(err, r) {
+			db.close();
+			if (err) {
+				return callback(err);
+			}
+			callback(null, true);
 		});
 	});
 };

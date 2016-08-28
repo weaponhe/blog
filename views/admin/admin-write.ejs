@@ -1,0 +1,119 @@
+<% include admin-header %>
+
+<link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+<link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+
+<style type="text/css">
+	.row{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	div[class^="col-"] {
+  	padding-left: 10px;
+		padding-right:10px; 
+	}
+</style>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-7">
+      <input type="text" class="form-control" id="titleInput" name="title" placeholder="请输入文章标题" <% if(post){ %>value=<%= post.title %><% } %>
+      >
+	  </div>
+	  <div class="col-xs-4">
+    	<input type="text" class="form-control" id="tagsInput" name="title" placeholder="请输入标签，用逗号隔开" <% if(post){ %>value=<%= post.tags %><% } %> >
+	  </div>
+	  <div class="col-xs-1">
+	  	
+      <% if(post){ %>
+      <button class="btn btn-success btn-block" id="update-post"  post_id=<%= post._id %>>更新</button>
+      <% }else{%>
+      <button class="btn btn-success btn-block" id="submit-post">发布</button>
+      <% } %>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<textarea class="form-control" id="introInput" rows="2" placeholder="请输入文章概述"><% if(post){ %><%= post.intro %><% } %></textarea>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="editor">
+		  	<textarea style="display:none;"><% if(post){ %><%= post.md %><% } %></textarea>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<script src="/libs/editor.md/examples/js/jquery.min.js"></script>
+<script src="/libs/editor.md/editormd.js"></script>
+<script type="text/javascript">
+var editor;
+$(function() {
+  editor = editormd('editor', {
+      weight: "100%",
+      height: 840,
+      path: "/libs/editor.md/lib/",
+      saveHTMLToTextarea: true,
+      emoji: true,
+      taskList: true,
+      tocm: true,
+      tex: true, // 开启科学公式TeX语言支持，默认关闭
+      // flowChart: true, // 开启流程图支持，默认关闭
+      // sequenceDiagram: true, // 开启时序/
+      toolbarAutoFixed:false,
+      toolbarIcons: function() {
+          return ["undo", "redo", "|",
+              "ucwords", "uppercase", "lowercase", "|",
+              "list-ul", "list-ol", "hr", "|",
+              "link", "reference-link", "image", "code", "code-block", "table", "emoji", "html-entities", "|",
+              "watch", "preview", "search", "help"
+          ]
+      }
+  });
+});
+
+function getData(){
+  return {
+    title: $("#titleInput").val(),
+    tags: $("#tagsInput").val(),
+    intro: $("#introInput").val(),
+    md: editor.getMarkdown(),
+    html: editor.getHTML()
+  };
+}
+
+$("#submit-post").click(function(){
+  $.ajax({
+      type: 'POST',
+      url: '/admin/p/new',
+      data: getData(),
+      success: function(data) {
+        window.location.href="/admin/posts";
+      },
+      error: function(data) {
+          console.log('err', data);
+      },
+      dataType: 'json'
+  });
+});
+$("#update-post").click(function(){
+  $.ajax({
+      type: 'POST',
+      url: "/admin/p/update/" + $("#update-post").attr("post_id"),
+      data: getData(),
+      success: function(data) {
+        window.location.href="/admin/posts";
+      },
+      error: function(data) {
+          console.log('err', data);
+      },
+      dataType: 'json'
+  });
+});
+
+</script>
+
+<% include admin-footer %>

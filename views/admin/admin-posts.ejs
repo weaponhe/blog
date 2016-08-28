@@ -1,0 +1,50 @@
+<% include admin-header %>
+<style type="text/css">
+	.row{
+		margin-bottom: 10px;
+	}
+</style>
+  <div class="container-fluid">
+  	<div class="row">
+  		<div class="col-xs-11"></div>
+  		<div class="col-xs-1">
+  			<a href="/admin/p/new" class="btn btn-success btn-block">写文章</a>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-xs-12">
+			  <div class="panel panel-default">
+					<table class="table table-hover">
+		          <thead>
+		              <tr>
+		                  <th>标题</th>
+		                  <th>日期</th>
+		                  <th>标签</th>
+		                  <th>操作</th>
+		              </tr>
+		          </thead>
+		          <tbody>
+		          <% posts.forEach(function(post,index){ %>
+								<tr>
+		              <th><a href="/p/<%= post._id %>" target="blank"><%= post.title %></a></th>
+		              <td><%= post.time.getFullYear() %>-
+		          				<%= post.time.getMonth()+1 %>-
+		              		<%= post.time.getDate() %>
+		              </td>
+		              <td><%= post.tags %></td>
+		              <td>
+		              	<a href="/admin/p/edit/<%= post._id %>" class="btn btn-primary btn-xs">编辑</a>
+										<a href="/admin/p/delete/<%= post._id %>" class="btn btn-default btn-xs">删除</a>
+		              </td>
+		            </tr>
+		          <% }) %>
+		              
+		          </tbody>
+		      </table>
+				</div>
+			</div>
+		</div>  
+  </div>
+
+
+<% include admin-footer %>
