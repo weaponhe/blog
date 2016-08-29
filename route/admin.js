@@ -7,6 +7,9 @@ module.exports = function(router) {
 
 	router.get('/posts', function(req, res) {
 		Post.getAll(function(err, posts) {
+			if (err) {
+				return next(err);
+			}
 			res.render('admin/admin-posts', {
 				title: "仪表盘-所有文章",
 				posts: posts
@@ -24,6 +27,9 @@ module.exports = function(router) {
 	router.get('/p/delete/:_id', function(req, res) {
 		var _id = req.params._id;
 		Post.deleteOne(_id, function(err, result) {
+			if (err) {
+				return next(err);
+			}
 			if (result) {
 				res.redirect('/admin/posts');
 			}
@@ -33,6 +39,9 @@ module.exports = function(router) {
 	router.get('/p/edit/:_id', function(req, res) {
 		var _id = req.params._id;
 		Post.getOneById(_id, function(err, post) {
+			if (err) {
+				return next(err);
+			}
 			res.render('admin/admin-write', {
 				title: '编辑',
 				post: post
@@ -50,7 +59,7 @@ module.exports = function(router) {
 		});
 		post.save(function(err) {
 			if (err) {
-				console.log('err');
+				return next(err);
 			}
 			res.json({
 				success: "asd"
@@ -70,7 +79,7 @@ module.exports = function(router) {
 		Post.update(_id, post, function(err, result) {
 			if (result) {
 				if (err) {
-					console.log('err');
+					return next(err);
 				}
 				res.json({
 					success: "asd"

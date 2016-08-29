@@ -91,13 +91,14 @@ Post.getLatestOne = function(callback) {
 };
 
 Post.getOneById = function(_id, callback) {
+	var objectId = new ObjectId(_id);
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
 			return callback(err);
 		}
 		var col = db.collection('posts');
 		col.findOne({
-			_id: ObjectId(_id)
+			_id: objectId
 		}, function(err, doc) {
 			db.close();
 			if (err) {
