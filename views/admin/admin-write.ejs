@@ -16,20 +16,30 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-xs-7">
+		<div class="col-xs-6">
       <input type="text" class="form-control" id="titleInput" name="title" placeholder="请输入文章标题" <% if(post){ %>value=<%= post.title %><% } %>
       >
 	  </div>
 	  <div class="col-xs-4">
     	<input type="text" class="form-control" id="tagsInput" name="title" placeholder="请输入标签，用逗号隔开" <% if(post){ %>value=<%= post.tags %><% } %> >
 	  </div>
+    <div class="col-xs-1">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="auto-sync" checked="checked"> 自动同步
+        </label>
+      </div>
+    </div>
 	  <div class="col-xs-1">
-	  	
+      <button class="btn btn-success btn-block" id="submit-post"  
+        <% if(post){ %> post_id=<%= post._id %> <% } %> 
+      >
       <% if(post){ %>
-      <button class="btn btn-success btn-block" id="update-post"  post_id=<%= post._id %>>更新</button>
+        更新
       <% }else{%>
-      <button class="btn btn-success btn-block" id="submit-post">发布</button>
+        发布
       <% } %>
+      </button>
 	  </div>
 	</div>
 	<div class="row">
@@ -85,34 +95,72 @@ function getData(){
   };
 }
 
-$("#submit-post").click(function(){
+function newPost(){
   $.ajax({
       type: 'POST',
       url: '/admin/p/new',
       data: getData(),
       success: function(data) {
-        window.location.href="/admin/posts";
-      },
-      error: function(data) {
-          console.log('err', data);
+        $("#submit-post").attr("post_id",data.post_id);
       },
       dataType: 'json'
   });
-});
-$("#update-post").click(function(){
-  $.ajax({
+}
+function updatePost(){
+   $.ajax({
       type: 'POST',
-      url: "/admin/p/update/" + $("#update-post").attr("post_id"),
+      url: "/admin/p/update/" + $("#submit-post").attr("post_id"),
       data: getData(),
       success: function(data) {
-        window.location.href="/admin/posts";
-      },
-      error: function(data) {
-          console.log('err', data);
       },
       dataType: 'json'
   });
+}
+
+$("#submit-post").click(function(){
+  if($("#submit-post").attr("post_id")){
+    updatePost()
+  }
+  else{
+    newPost();
+  }
+  window.location.href="/admin/posts";
 });
+
+function toast(message){
+  $(".toast").text(message);
+  $(".toast").fadeIn("slow")
+  setTimeout(function(){
+    $(".toast").fadeOut("slow");
+  },5000);
+}
+
+function autoSave(){
+  if(!$("#titleInput").val())
+  {
+    return;
+  }
+  if($("#submit-post").attr("post_id"))
+  {
+    updatePost();
+    toast("自动同步");
+  }
+  else{
+    newPost();
+    toast("自动同步");
+  }
+}
+
+var interval_id;
+$("#auto-sync").change(function(){
+  if($("#auto-sync").is(':checked')){
+     interval_id = setInterval(autoSave,60000);
+  }
+  else{
+    clearInterval(interval_id);
+  }
+});
+$("#auto-sync").change();
 
 </script>
 

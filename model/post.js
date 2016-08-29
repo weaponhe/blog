@@ -32,7 +32,7 @@ Post.prototype.save = function(callback) {
 			if (err) {
 				return callback(err);
 			}
-			callback(null);
+			callback(null, r.ops[0]._id);
 		});
 	});
 };

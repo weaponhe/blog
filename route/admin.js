@@ -57,12 +57,13 @@ module.exports = function(router) {
 			md: req.body.md,
 			html: req.body.html
 		});
-		post.save(function(err) {
+		post.save(function(err, _id) {
 			if (err) {
 				return next(err);
 			}
 			res.json({
-				success: "asd"
+				success: true,
+				post_id: _id
 			});
 		});
 	});
