@@ -2,9 +2,6 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
 var url = require('../settings').getUrl();
 var test = require('assert');
-MongoClient.connect(url, function(err, db) {
-
-});
 
 var Post = function(post) {
 	this.title = post.title;
