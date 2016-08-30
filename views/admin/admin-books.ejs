@@ -1,0 +1,109 @@
+<% include admin-header %>
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-xs-11"></div>
+		<div class="col-xs-1">
+			<a class="btn btn-success btn-block" data-toggle="modal" data-target="#newBookModal">新书单</a>
+		</div>
+	</div>
+	<div class="row">
+  		<div class="col-xs-12">
+			  <div class="panel panel-default">
+					<table class="table table-hover">
+		          <thead>
+		              <tr>
+		                  <th>书名</th>
+		                  <th>作者</th>
+		                  <th>出版社</th>
+		                  <th>链接</th>
+		                  <th>图片</th>
+		                  <th>状态</th>
+		              </tr>
+		          </thead>
+		          <tbody>
+		          <% books.forEach(function(book,index){ %>
+								<tr>
+		              <td><%= book.title %></td>
+		              <td><%= book.author %></td>
+		              <td><%= book.publisher %></td>
+		              <td><%= book.link %></td>
+		              <td><%= book.img %></td>
+		              <td><%= book.status %></td>
+		            </tr>
+		          <% }) %>
+		              
+		          </tbody>
+		      </table>
+				</div>
+			</div>
+		</div>  
+</div>
+<!-- Modal -->
+<div class="modal fade" id="newBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">新书单</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+				  <span class="input-group-addon">书  名</span>
+				  <input id="inputBookname" type="text" class="form-control" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group">
+				  <span class="input-group-addon">作  者</span>
+				  <input id="inputAuthor" type="text" class="form-control" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group">
+				  <span class="input-group-addon">出  版</span>
+				  <input id="inputPublisher" type="text" class="form-control" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group">
+				  <span class="input-group-addon">链   接</span>
+				  <input id="inputLink" type="text" class="form-control" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group">
+				  <span class="input-group-addon">图   片</span>
+				  <input id="inputImg" type="text" class="form-control" aria-describedby="basic-addon1">
+				</div>
+				<select id="inputStatus" class="form-control">
+				  <option>想读</option>
+				  <option>在读</option>
+				  <option>已读</option>
+				</select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="btnSava">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$('#btnSava').click(function(){
+	$('#newBookModal').modal('hide');
+		newBook({
+			title: $('#inputBookname').val(),
+			author: $('#inputAuthor').val(),
+			publisher: $('#inputPublisher').val(),
+			link: $('#inputLink').val(),
+			img: $('#inputImg').val(),
+			status: $('#inputStatus').val()
+		});
+});
+function newBook(book){
+  $.ajax({
+      type: 'POST',
+      url: '/admin/b/new',
+      data: book,
+      success: function(data) {
+			  window.location.href="/admin/books";
+      },
+      dataType: 'json'
+  });
+}
+</script>
+<% include admin-footer %>

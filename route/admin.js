@@ -1,4 +1,5 @@
 var Post = require('../model/post');
+var Book = require('../model/book');
 var test = require('assert');
 module.exports = function(router) {
 	router.get('/', function(req, res) {
@@ -88,5 +89,39 @@ module.exports = function(router) {
 			}
 		})
 	});
+
+	//book
+	router.get('/books', function(req, res) {
+		Book.getAll(function(err, books) {
+			if (err) {
+				return next(err);
+			}
+			res.render('admin/admin-books', {
+				title: "仪表盘-书单",
+				books: books
+			});
+		});
+	});
+
+	router.post('/b/new', function(req, res) {
+		console.log("asd");
+		var book = new Book({
+			title: req.body.title,
+			author: req.body.author,
+			publisher: req.body.publisher,
+			link: req.body.link,
+			status: req.body.status,
+			img: req.body.img
+		});
+		book.save(function(err) {
+			if (err) {
+				return next(err);
+			}
+			res.json({
+				success: true
+			});
+		});
+	});
+
 	return router;
 };

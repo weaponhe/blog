@@ -1,4 +1,5 @@
 var Post = require('../model/post');
+var Book = require('../model/book');
 var test = require('assert');
 module.exports = function(app) {
 
@@ -74,6 +75,22 @@ module.exports = function(app) {
 			} else {
 				next();
 			}
+		});
+	});
+
+
+	app.get('/lab', function(req, res, next) {
+		res.end("/lab");
+	});
+	app.get('/books', function(req, res, next) {
+		Book.getAll(function(err, books) {
+			if (err) {
+				return next(err);
+			}
+			res.render('books', {
+				title: '书单',
+				books: books
+			});
 		});
 	});
 
