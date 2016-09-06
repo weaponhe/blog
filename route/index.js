@@ -1,8 +1,11 @@
 var blogRoute = require('./blog');
 var adminRoute = require('./admin');
+var testRoute = require('./test');
+
 module.exports = function(app, Router) {
 	app.use('/', blogRoute(Router()));
 	app.use('/admin', adminRoute(Router()));
+	app.use('/test', testRoute(Router()));
 
 	app.use(function(req, res, next) {
 		res.status(404);

@@ -53,3 +53,21 @@ Book.getAll = function(callback) {
 		});
 	});
 }
+
+Book.deleteOne = function(_id, callback) {
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		var col = db.collection('books');
+		col.deleteOne({
+			_id: ObjectId(_id)
+		}, function(err, r) {
+			db.close();
+			if (err) {
+				return callback(err);
+			}
+			callback(null, true);
+		});
+	});
+};

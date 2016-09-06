@@ -2,55 +2,83 @@ var Post = require('../model/post');
 var Book = require('../model/book');
 var test = require('assert');
 module.exports = function(router) {
-	router.get('/', function(req, res) {
-		res.redirect('/admin/posts');
+
+	router.get('/', function(req, res, next) {
+		res.render('admin/admin-index', {
+			title: '仪表盘'
+		});
 	});
 
-	router.get('/posts', function(req, res) {
+	router.get('/posts', function(req, res, next) {
 		Post.getAll(function(err, posts) {
 			if (err) {
 				return next(err);
 			}
-			res.render('admin/admin-posts', {
-				title: "仪表盘-所有文章",
+			req.app.render('admin/admin-posts', {
 				posts: posts
+			}, function(err, html) {
+				if (err) {
+					return next(err);
+				}
+				res.json({
+					success: true,
+					html: html
+				});
 			});
 		});
 	});
 
-	router.get('/p/new', function(req, res) {
-		res.render('admin/admin-write', {
-			title: "仪表盘-写文章",
-			post: null
-		});
-	});
-
-	router.get('/p/delete/:_id', function(req, res) {
+	router.delete('/posts/:_id', function(req, res, next) {
 		var _id = req.params._id;
 		Post.deleteOne(_id, function(err, result) {
 			if (err) {
 				return next(err);
 			}
 			if (result) {
-				res.redirect('/admin/posts');
+				res.json({
+					success: true
+				});
 			}
 		});
 	});
 
-	router.get('/p/edit/:_id', function(req, res) {
+	router.get('/posts/edit/:_id', function(req, res, next) {
 		var _id = req.params._id;
-		Post.getOneById(_id, function(err, post) {
-			if (err) {
-				return next(err);
-			}
-			res.render('admin/admin-write', {
-				title: '编辑',
-				post: post
+		var editingPost = null;
+		if (_id !== "undefined") {
+			Post.getOneById(_id, function(err, post) {
+				if (err) {
+					return next(err);
+				}
+				editingPost = post;
+				req.app.render('admin/admin-edit', {
+					post: post
+				}, function(err, html) {
+					if (err) {
+						return next(err);
+					}
+					res.json({
+						success: true,
+						html: html
+					});
+				});
 			});
-		});
+		} else {
+			req.app.render('admin/admin-edit', {
+				post: null
+			}, function(err, html) {
+				if (err) {
+					return next(err);
+				}
+				res.json({
+					success: true,
+					html: html
+				});
+			});
+		}
 	});
 
-	router.post('/p/new', function(req, res) {
+	router.post('/posts', function(req, res) {
 		var post = new Post({
 			title: req.body.title,
 			tags: req.body.tags,
@@ -64,12 +92,12 @@ module.exports = function(router) {
 			}
 			res.json({
 				success: true,
-				post_id: _id
+				_id: _id
 			});
 		});
 	});
 
-	router.post('/p/update/:_id', function(req, res) {
+	router.put('/posts/:_id', function(req, res, next) {
 		var _id = req.params._id;
 		var post = new Post({
 			title: req.body.title,
@@ -84,27 +112,33 @@ module.exports = function(router) {
 					return next(err);
 				}
 				res.json({
-					success: "asd"
+					success: true
 				});
 			}
 		})
 	});
 
-	//book
-	router.get('/books', function(req, res) {
+	router.get('/books', function(req, res, next) {
+		console.log("/books")
 		Book.getAll(function(err, books) {
 			if (err) {
 				return next(err);
 			}
-			res.render('admin/admin-books', {
-				title: "仪表盘-书单",
+			req.app.render('admin/admin-books', {
 				books: books
+			}, function(err, html) {
+				if (err) {
+					return next(err);
+				}
+				res.json({
+					success: true,
+					html: html
+				});
 			});
 		});
 	});
 
-	router.post('/b/new', function(req, res) {
-		console.log("asd");
+	router.post('/books', function(req, res, next) {
 		var book = new Book({
 			title: req.body.title,
 			author: req.body.author,
@@ -120,6 +154,24 @@ module.exports = function(router) {
 			res.json({
 				success: true
 			});
+		});
+	});
+
+	router.put('/books/:_id', function(req, res, next) {
+		var _id = req.params._id;
+	});
+
+	router.delete('/books/:_id', function(req, res, next) {
+		var _id = req.params._id;
+		Book.deleteOne(_id, function(err, result) {
+			if (err) {
+				return next(err);
+			}
+			if (result) {
+				res.json({
+					success: true
+				});
+			}
 		});
 	});
 

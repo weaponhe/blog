@@ -1,5 +1,3 @@
-<% include admin-header %>
-
 <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
 <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 
@@ -30,17 +28,16 @@
         </label>
       </div>
     </div>
-	  <div class="col-xs-1">
-      <button class="btn btn-success btn-block" id="submit-post"  
-        <% if(post){ %> post_id=<%= post._id %> <% } %> 
-      >
+    <div class="col-xs-1">
       <% if(post){ %>
+      <a href="/admin/#nav:posts,method:put,_id:<%= post._id %>" class="btn btn-success btn-block">
         更新
       <% }else{%>
+      <a href="/admin/#nav:posts,method:post" class="btn btn-success btn-block"  id="submit-post">
         发布
       <% } %>
-      </button>
-	  </div>
+      </a>
+    </div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
@@ -71,8 +68,6 @@ $(function() {
       taskList: true,
       tocm: true,
       tex: true, // 开启科学公式TeX语言支持，默认关闭
-      // flowChart: true, // 开启流程图支持，默认关闭
-      // sequenceDiagram: true, // 开启时序/
       toolbarAutoFixed:false,
       toolbarIcons: function() {
           return ["undo", "redo", "|",
@@ -84,84 +79,6 @@ $(function() {
       }
   });
 });
-
-function getData(){
-  return {
-    title: $("#titleInput").val(),
-    tags: $("#tagsInput").val(),
-    intro: $("#introInput").val(),
-    md: editor.getMarkdown(),
-    html: editor.getHTML()
-  };
-}
-
-function newPost(){
-  $.ajax({
-      type: 'POST',
-      url: '/admin/p/new',
-      data: getData(),
-      success: function(data) {
-        $("#submit-post").attr("post_id",data.post_id);
-      },
-      dataType: 'json'
-  });
-}
-function updatePost(){
-   $.ajax({
-      type: 'POST',
-      url: "/admin/p/update/" + $("#submit-post").attr("post_id"),
-      data: getData(),
-      success: function(data) {
-      },
-      dataType: 'json'
-  });
-}
-
-$("#submit-post").click(function(){
-  if($("#submit-post").attr("post_id")){
-    updatePost()
-  }
-  else{
-    newPost();
-  }
-  window.location.href="/admin/posts";
-});
-
-function toast(message){
-  $(".toast").text(message);
-  $(".toast").fadeIn("slow")
-  setTimeout(function(){
-    $(".toast").fadeOut("slow");
-  },5000);
-}
-
-function autoSave(){
-  if(!$("#titleInput").val())
-  {
-    return;
-  }
-  if($("#submit-post").attr("post_id"))
-  {
-    updatePost();
-    toast("自动同步");
-  }
-  else{
-    newPost();
-    toast("自动同步");
-  }
-}
-
-var interval_id;
-$("#auto-sync").change(function(){
-  if($("#auto-sync").is(':checked')){
-     interval_id = setInterval(autoSave,60000);
-  }
-  else{
-    clearInterval(interval_id);
-  }
-});
-$("#auto-sync").change();
-
 </script>
+<script type="text/javascript" src="/javascripts/admin/edit.js"></script>
 
-<% include admin-footer %>
