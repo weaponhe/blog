@@ -12,12 +12,18 @@
   ],
   "author": "weaponhe",
   "license": "ISC",
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "editor.md": "^1.5.0",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "github-markdown-css": "^2.4.0",
-    "mongodb": "^2.2.5"
+    "mongodb": "^2.2.5",
+    "jquery": "^3.1.0"
   }
 }

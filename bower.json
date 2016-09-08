@@ -20,7 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.1.0",
     "font-awesome": "Font-Awesome#^4.6.3",
     "editor.md": "^1.5.0"
   }

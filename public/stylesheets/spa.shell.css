@@ -1,0 +1,71 @@
+#nav {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    width: 90px;
+    background-color: #293038;
+    color: #FFF;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    // background-color: #09c;
+    background-color: #293038;
+    z-index: 10;
+}
+
+#mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(1, 1, 1, 0.5);
+    z-index: 100;
+    display: none;
+}
+
+#main {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 90px;
+    right: 0;
+    background-color: #EEE;
+}
+
+#post_panel {
+    padding: 10px;
+    display: none;
+}
+
+#book_panel {
+    padding: 10px;
+    display: none;
+}
+
+#edit_panel {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #EEE;
+    z-index: 5;
+    display: none;
+}
+
+#modal_panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}

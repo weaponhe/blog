@@ -1,0 +1,25 @@
+#spa-nav {
+    text-align: center;
+}
+
+#spa-nav a {
+    text-decoration: none;
+    color: #eee;
+}
+
+#spa-nav li {
+    font-size: 18px;
+    line-height: 40px;
+    letter-spacing:8px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+#spa-nav li:hover {
+    background-color: #414d5c;
+}
+
+#spa-nav li.active {
+    background-color: #eee;
+    color: #000;
+}
