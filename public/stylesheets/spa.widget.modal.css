@@ -1,0 +1,28 @@
+.spa-modal {
+    position: absolute;
+    z-index: 101;
+    top: 10%;
+    left: 30%;
+    right: 30%;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.spa-modal-header {
+    padding:  12px 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.spa-modal-header h4 {
+    font-weight: 900;
+}
+
+.spa-modal-main {
+    padding: 20px;
+}
+
+.spa-modal-footer {
+    padding:20px 20px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
