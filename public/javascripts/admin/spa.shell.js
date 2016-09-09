@@ -10,7 +10,7 @@ var $ = require('jquery'),
 		main_html: String() +
 			'    	<div id="mask"></div>' +
 			'    	<div id="nav"></div>' +
-			'    	<div id="header"></div>' +
+			'    	<div id="header"><h4>活到老，学到老，改变世界。</h4></div>' +
 			'    	<div id="main">' +
 			'    		<div id="post_panel"></div>' +
 			'    		<div id="book_panel"></div>' +
@@ -46,7 +46,8 @@ setJqueryMap = function() {
 render = function() {
 	jqueryMap.$post_panel.hide();
 	jqueryMap.$book_panel.hide();
-	jqueryMap.$edit_panel.hide();
+	Editor.hide();
+	// jqueryMap.$edit_panel.hide();
 	switch (stateMap.hash_map.nav) {
 		case 'posts':
 			jqueryMap.$post_panel.show();
@@ -61,6 +62,7 @@ render = function() {
 
 
 onHashChange = function(e) {
+	Nav.updateActive(location.hash);
 	var hashStr = location.hash.slice(2),
 		hashArr = hashStr.split('&'),
 		hashMap = {};
@@ -140,6 +142,14 @@ initModule = function($container) {
 	book_table.initModule(jqueryMap.$book_panel);
 
 	$(window).bind('hashchange', onHashChange);
+	$(function() {
+		var hash = location.hash;
+		if (hash === '') {
+			location.hash = '#!nav=posts';
+		} else {
+			$(window).trigger('hashchange');
+		}
+	});
 };
 
 module.exports = {

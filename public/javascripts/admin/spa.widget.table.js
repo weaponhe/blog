@@ -95,15 +95,41 @@ renderTableHeader = function() {
 }
 
 renderTableBody = function(data) {
-	var attr_map = this.configMap.attr_map;
-	$tbody = this.jqueryMap.$tbody;
-	$tbody.html('');
-	var _id, item, append_tr;
-	for (_id in data) {
-		append_tr = '<tr data-id=' + _id + ' > ';
+	var attr_map = this.configMap.attr_map,
+		$tbody = this.jqueryMap.$tbody,
+		list_items = data.list,
+		add_item = data.add,
+		delete_item = data.delete,
+		update_item = data.update;
 
+	if (list_items) {
+		$tbody.html('');
+		var _id, item, append_tr;
+		for (_id in list_items) {
+			append_tr = '<tr data-id=' + _id + ' > ';
+
+			for (key in attr_map) {
+				append_tr += '<td>' + list_items[_id][key] + '</td>';
+			}
+			if (this.configMap.has_edit_btn || this.configMap.has_delete_btn) {
+				append_tr += '<td>';
+				if (this.configMap.has_edit_btn) {
+					append_tr += '<button type="button" class="btn btn-primary btn-xs spa-table-edit-btn"  data-id=' + _id + ' >编辑</button>'
+				}
+				if (this.configMap.has_delete_btn) {
+					append_tr += ' <button type="button" class="btn btn-default btn-xs spa-table-del-btn" data-id=' + _id + ' >刪除</button>'
+				}
+				append_tr += '</td>';
+			}
+			append_tr += '</tr>';
+			$tbody.append(append_tr);
+		}
+	}
+	if (add_item) {
+		var _id = add_item._id;
+		append_tr = '<tr data-id=' + _id + ' > ';
 		for (key in attr_map) {
-			append_tr += '<td>' + data[_id][key] + '</td>';
+			append_tr += '<td>' + add_item[key] + '</td>';
 		}
 		if (this.configMap.has_edit_btn || this.configMap.has_delete_btn) {
 			append_tr += '<td>';
@@ -116,7 +142,32 @@ renderTableBody = function(data) {
 			append_tr += '</td>';
 		}
 		append_tr += '</tr>';
-		$tbody.append(append_tr);
+		$tbody.prepend(append_tr);
+	}
+
+	if (delete_item) {
+		$tbody.find('[data-id=' + delete_item + ']').remove();
+	}
+	if (update_item) {
+		var _id = update_item._id;
+		var old = $tbody.find('[data-id=' + _id + ']');
+		var append_tr = '<tr data-id=' + _id + ' > ';
+		for (key in attr_map) {
+			append_tr += '<td>' + update_item[key] + '</td>';
+		}
+		if (this.configMap.has_edit_btn || this.configMap.has_delete_btn) {
+			append_tr += '<td>';
+			if (this.configMap.has_edit_btn) {
+				append_tr += '<button type="button" class="btn btn-primary btn-xs spa-table-edit-btn"  data-id=' + _id + ' >编辑</button>'
+			}
+			if (this.configMap.has_delete_btn) {
+				append_tr += ' <button type="button" class="btn btn-default btn-xs spa-table-del-btn" data-id=' + _id + ' >刪除</button>'
+			}
+			append_tr += '</td>';
+		}
+		append_tr += '</tr>';
+		old.after(append_tr);
+		old.remove();
 	}
 }
 
@@ -171,7 +222,6 @@ initModule = function($container) {
 	setJqueryMap.call(this);
 	renderCreateBtn.call(this);
 	renderTableHeader.call(this);
-	renderTableBody.call(this);
 
 	//dom event 
 	this.jqueryMap.$create.bind('click', onCreateClick.bind(this));

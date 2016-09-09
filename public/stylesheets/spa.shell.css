@@ -14,11 +14,17 @@
     left: 0;
     right: 0;
     height: 50px;
-    // background-color: #09c;
     background-color: #293038;
     z-index: 10;
-}
 
+}
+#header h4{
+    margin: 0;
+    padding: 0;
+     color: #FFF;
+    line-height: 50px;
+    text-align: center;
+}
 #mask {
     position: absolute;
     top: 0;

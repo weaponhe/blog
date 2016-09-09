@@ -46,14 +46,15 @@ var $ = require('jquery'),
 	stateMap = {
 		$container: undefined,
 		editor: undefined,
+		interval_id: undefined,
 		post: {}
 	},
 	jqueryMap = {},
 
-	updatePostData,
+	updatePostData, savePost,
 	setJqueryMap, initEditor,
 	initEditor, render,
-	onSubmitClick,
+	onSubmitClick, onSyncChange,
 	configModule, initModule, show, hide;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -64,6 +65,35 @@ updatePostData = function() {
 	stateMap.post.intro = jqueryMap.$intro.val();
 	stateMap.post.md = stateMap.editor.getMarkdown();
 	stateMap.post.html = stateMap.editor.getHTML();
+};
+
+
+
+savePost = function() {
+	updatePostData();
+	var name = configMap.name,
+		post = stateMap.post,
+		model = configMap.model;
+
+	// console.log(post);
+
+	if (post.title.trim() === '') {
+		return false;
+	}
+	if (post._id) {
+		model.update(name, post);
+	} else {
+		model.add(name, post);
+	}
+	return true;
+};
+
+autoSave = function() {
+	if (savePost()) {
+		console.log('自动更新');
+	} else {
+		console.log('更新失败');
+	}
 };
 //-------------------- END UTILITY METHODS -------------------
 
@@ -113,17 +143,28 @@ render = function() {
 //---------------------- END DOM METHODS ---------------------
 
 //------------------- BEGIN EVENT HANDLERS -------------------
-onSubmitClick = function(e) {
-	updatePostData();
-	var name = configMap.name,
-		post = stateMap.post,
-		model = configMap.model;
-	if (post._id) {
-		model.update(name, post);
-	} else {
-		model.add(name, post);
+onListChange = function(data) {
+	if (data.add) {
+		stateMap.post = data.add;
 	}
-	hide();
+};
+
+onSubmitClick = function(e) {
+	if (savePost()) {
+		hide();
+	} else {
+		alert("保存失败");
+	}
+};
+
+onSyncChange = function(e) {
+	if ($(e.target).is(':checked')) {
+		stateMap.interval_id = setInterval(autoSave, 30000);
+		// console.log("setInterval = ", stateMap.interval_id);
+	} else {
+		clearInterval(stateMap.interval_id);
+		// console.log("clearInterval = ", stateMap.interval_id);
+	}
 };
 //-------------------- END EVENT HANDLERS --------------------
 
@@ -143,7 +184,10 @@ initModule = function($container) {
 	setJqueryMap();
 	initEditor();
 
+	Event.subscribe('list-change-' + configMap.name, onListChange);
+
 	jqueryMap.$submit.bind('click', onSubmitClick);
+	jqueryMap.$sync.bind('change', onSyncChange);
 };
 
 show = function(post) {
@@ -151,10 +195,14 @@ show = function(post) {
 	stateMap.editor.resize();
 	stateMap.post = post ? post : {};
 	render();
+	jqueryMap.$sync.change();
+
 };
 
 hide = function() {
 	stateMap.$container.hide();
+	// console.log("clearInterval = ", stateMap.interval_id);
+	clearInterval(stateMap.interval_id);
 };
 //------------------- END PUBLIC METHODS ---------------------
 

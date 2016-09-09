@@ -1,6 +1,7 @@
 //---------------- BEGIN MODULE SCOPE VARIABLES --------------
 var $ = require('jquery'),
 	Util = require('./spa.util'),
+	Event = require('./spa.event'),
 	Modal = function() {
 		this.configMap = {
 			main_html: String() +
@@ -90,6 +91,7 @@ renderData = function() {
 //---------------------- END DOM METHODS ---------------------
 
 //------------------- BEGIN EVENT HANDLERS -------------------
+
 onMaskClick = function(e) {
 	hide.call(this);
 };
@@ -127,6 +129,7 @@ initModule = function($container) {
 	$container.html(this.configMap.main_html);
 	setJqueryMap.call(this);
 	renderBody.call(this);
+
 
 	this.configMap.$mask.bind('click', onMaskClick.bind(this));
 	this.jqueryMap.$save.bind('click', onSaveClick.bind(this));

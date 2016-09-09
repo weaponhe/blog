@@ -1,4 +1,5 @@
  var $ = require('jquery'),
+ 	Datekit = require('datekit'),
  	Event = require('./spa.event'),
  	configMap = {},
  	stateMap = {
@@ -9,8 +10,10 @@
  	add, remove, update, getList, getByID,
  	initModule;
 
- _publishListChange = function(name) {
- 	Event.publish('list-change-' + name, stateMap.id_map[name]);
+ _publishListChange = function(name, op, data) {
+ 	var res = {};
+ 	res[op] = data;
+ 	Event.publish('list-change-' + name, res);
  };
 
  add = function(name, doc) {
@@ -19,8 +22,10 @@
  		url: '/admin/' + name + '/add',
  		data: doc,
  		success: function(data) {
+ 			data.time = Datekit.format(new Date(data.time), 'yyyy-MM-dd HH:mm:ss');
  			stateMap.id_map[name][data._id] = data;
- 			_publishListChange(name);
+ 			_publishListChange(name, 'add', data);
+ 			return data;
  		},
  		error: function(err) {
  			console.log(err);
@@ -35,7 +40,7 @@
  		url: '/admin/' + name + '/remove/' + _id,
  		success: function(data) {
  			delete stateMap.id_map[name][_id];
- 			_publishListChange(name);
+ 			_publishListChange(name, 'delete', _id);
  		},
  		error: function(err) {
  			console.log(err);
@@ -51,8 +56,7 @@
  		data: doc,
  		success: function(data) {
  			stateMap.id_map[name][doc._id] = doc;
- 			console.log(stateMap.id_map);
- 			_publishListChange(name);
+ 			_publishListChange(name, 'update', doc);
  		},
  		error: function(err) {
  			console.log(err);
@@ -71,9 +75,10 @@
  		success: function(data) {
  			var i;
  			for (i = 0; i < data.length; i++) {
+ 				data[i].time = Datekit.format(new Date(data[i].time), 'yyyy-MM-dd HH:mm:ss');
  				stateMap.id_map[name][data[i]._id] = data[i];
  			}
- 			_publishListChange(name);
+ 			_publishListChange(name, 'list', stateMap.id_map[name]);
  		},
  		error: function(err) {
  			console.log(err);

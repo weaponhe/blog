@@ -18,6 +18,7 @@ stateMap = {
 };
 jqueryMap = {};
 var setJqueryMap, render,
+	onNavClick,
 	configModule, initModule;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -45,21 +46,12 @@ render = function() {
 }
 
 //---------------------- END DOM METHODS ---------------------
-
-//------------------- BEGIN EVENT HANDLERS -------------------
 onNavClick = function(e) {
-	var target = $(e.target);
-	if (target[0].nodeName === 'LI') {
-		var lis = jqueryMap.$nav.find('li');
-		Array.prototype.forEach.call(lis, function(li, idx, array) {
-			if ($(li).hasClass('active')) {
-				$(li).removeClass('active')
-			}
-		});
-		target.addClass('active');
-		$(window).trigger('hashchange');
-	}
+	var target = e.target;
+	$(window).trigger('hashchange');
 };
+//------------------- BEGIN EVENT HANDLERS -------------------
+
 //-------------------- END EVENT HANDLERS --------------------
 
 //------------------- BEGIN PUBLIC METHODS -------------------
@@ -80,9 +72,21 @@ initModule = function($container) {
 	jqueryMap.$nav.bind('click', onNavClick);
 	render();
 };
+
+updateActive = function(hash) {
+	var lis = jqueryMap.$nav.find('li');
+	Array.prototype.forEach.call(lis, function(li, idx, array) {
+		if ($(li).hasClass('active')) {
+			$(li).removeClass('active')
+		}
+	});
+	var target = jqueryMap.$nav.find('[href="/admin' + hash + '"] li');
+	target.addClass('active');
+};
 //------------------- END PUBLIC METHODS ---------------------
 
 module.exports = {
 	configModule: configModule,
-	initModule: initModule
+	initModule: initModule,
+	updateActive: updateActive
 };

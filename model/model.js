@@ -19,7 +19,7 @@ Model.prototype.save = function(doc_type, callback) {
 			doc[key] = this[key];
 		}
 	}
-	doc.time = new Date();
+	doc.time = new Date().getTime();
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
 			return callback(err);
@@ -41,7 +41,9 @@ Model.getList = function(doc_type, callback) {
 			return callback(err);
 		}
 		var col = db.collection(doc_type);
-		col.find().toArray(function(err, docs) {
+		col.find().sort({
+			time: -1
+		}).toArray(function(err, docs) {
 			db.close();
 			if (err) {
 				return callback(err);
