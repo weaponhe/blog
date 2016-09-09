@@ -1,13 +1,10 @@
 var path = require('path');
 var blogRoute = require('./blog');
-// var adminRoute = require('./admin');
-// var testRoute = require('./test');
 var spaRoute = require('./spa');
 
 module.exports = function(app, Router) {
 	app.use('/', blogRoute(Router()));
 	app.get('/admin', function(req, res, next) {
-		// res.redirect('spa.html');
 		var options = {
 			root: path.join(__dirname + '/../public/'),
 			dotfiles: 'deny',
@@ -28,7 +25,6 @@ module.exports = function(app, Router) {
 	});
 
 	app.use('/admin', spaRoute(Router()));
-	// app.use('/test', testRoute(Router()));
 	app.use(function(req, res, next) {
 		res.status(404);
 		if (req.accepts('html')) {

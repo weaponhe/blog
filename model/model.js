@@ -19,7 +19,13 @@ Model.prototype.save = function(doc_type, callback) {
 			doc[key] = this[key];
 		}
 	}
-	doc.time = new Date().getTime();
+	//
+	if (doc_type === 'posts') {
+		if (doc.tags.trim() !== '') {
+			doc.tags = doc.tags.split(',');
+		}
+	};
+	doc.time = new Date();
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
 			return callback(err);
@@ -70,16 +76,24 @@ Model.remove = function(doc_type, _id, callback) {
 	});
 };
 
-Model.update = function(doc_type, _id, task, callback) {
+Model.update = function(doc_type, _id, doc, callback) {
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
 			return callback(err);
 		}
+		//
+		if (doc_type === 'posts') {
+			if (doc.tags.trim() !== '') {
+				doc.tags = doc.tags.split(',');
+			}
+		};
+		delete doc.time;
 		var col = db.collection(doc_type);
+
 		col.findOneAndUpdate({
 			_id: ObjectId(_id)
 		}, {
-			$set: task
+			$set: doc
 		}, function(err, r) {
 			db.close();
 			if (err) {

@@ -48,7 +48,6 @@ module.exports = function(router) {
 	});
 
 	router.get('/:doc_type/list', function(req, res, next) {
-		console.log(req.params.doc_type);
 		Model.getList(req.params.doc_type, function(err, docs) {
 			if (err) {
 				res.status(500)
