@@ -1,32 +1,55 @@
 <% include header%>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <% books.forEach(function(book){ %>
-	<table class="table table-hover">
-	  <% books.forEach(function(book,index){ %>
-        <tr>
-          <th>书名</th>
-        	<td><%= book.title %></td>
-        </tr>
-        <tr>
-        	<th>作者</th>
-        	<td><%= book.author %></td>
-        </tr>
-        <tr>
-          <th>出版社</th>
-       		<td><%= book.publisher %></td>
-        </tr>
-        <tr>
-        	<th>链接</th>
-       		<td><%= book.link %></td>
-        </tr>
-        <tr>
-        	<th>图片</th>
-        	<td><%= book.img %></td>
-        </tr>
-        <tr>
-          <th>状态</th>
-        	<td><%= book.status %></td>
-        </tr>
-			<% }) %>
-	</table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><%= book.title %></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12 center">
+                            <img src="<%= book.img %>" class="img-thumbnail">
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:80px;">作者</td>
+                                        <td><%= book.author %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>出版商</td>
+                                        <td><%= book.publisher %></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>链接</td>
+                                        <td>
+                                            <a href="<%= book.link %>">图书链接</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>时间</td>
+                                        <td><%= book.time %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>状态</td>
+                                        <td>
+                                            <span class="label label-info"><%= book.status %></span>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <% }) %>
 <% include footer%>
