@@ -1,0 +1,399 @@
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover,
+a.focus,
+a.active {
+    color: #4a75b5;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
+    color: #666;
+    background-color: #ededed;
+    overflow-x: hidden;
+}
+
+.wrapper90 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper80 {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.bc-red {
+    background-color: red;
+}
+
+/*
+nav =============*/
+.nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20rem;
+    background-color: #FFF;
+    transition: width 0.3s;
+    overflow: auto;
+    z-index: 10;
+}
+
+.mini .nav {
+    width: 5rem;
+}
+
+/*
+nav-toggle =============*/
+.nav-toggle {
+    height: 3rem;
+    line-height: 3rem;
+    background-color: #222;
+    text-align: center;
+    color: #EEE;
+}
+
+.nav-toggle:hover {
+    cursor: pointer;
+}
+
+/*
+nav-profile =============*/
+.nav-profile {
+    text-align: center;
+    margin-top: 1rem;
+    transition: margin-top 0.3s;
+}
+
+.nav-profile-img {
+    width: 6rem;
+    border-radius: 50%;
+    transition: width 0.3s;
+}
+
+.mini .nav-profile-img {
+    width: 3rem;
+}
+
+.mini .nav-profile-name {
+    display: none;
+}
+
+/*
+nav-mainmenu =============*/
+.nav-mainmenu {
+    padding: 1rem;
+}
+
+.mini .nav-mainmenu {
+    padding: 1rem 0;
+}
+
+.nav-mainmenu-ul {
+    width: 48%;
+}
+
+.nav-mainmenu-ul:first-child {
+    float: left;
+}
+
+.nav-mainmenu-ul:last-child {
+    float: right;
+}
+
+.mini .nav-mainmenu-ul {
+    float: none;
+    width: 100%;
+}
+
+.nav-mainmenu-ul li a {
+    text-align: center;
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
+}
+
+.mini .nav-mainmenu-ul li a {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-mainmenu-ul li a i {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.mini .nav-mainmenu-ul li a i {
+    margin-right: auto;
+}
+
+.nav-mainmenu-ul li a span {
+    font-size: 1.5rem;
+}
+
+.mini .nav-mainmenu-ul li a span {
+    display: none;
+}
+
+.nav-mainmenu-ul li a:hover {
+    background-color: #555;
+    color: #FFF;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 30.0625rem) and (max-width: 70em) {
+
+    .nav {
+        width: 10rem;
+        transition: none;
+    }
+
+    .mini .nav {
+        width: 5rem;
+    }
+
+    .nav-profile-img {
+        width: 3rem;
+    }
+
+    .nav-profile-name {
+        display: none;
+    }
+
+    .nav-mainmenu {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .nav-mainmenu-ul {
+        width: 100%;
+    }
+
+    .nav-mainmenu-ul li a {
+        padding: 1rem 0;
+    }
+}
+
+@media only screen and (max-width: 30em ) {
+
+    .nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100% !important;
+        min-height: 3rem;
+        box-shadow: 0 0 5px #333;
+    }
+
+    .nav-toggle {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .nav-profile {
+        display: none;
+    }
+
+    .nav-mainmenu {
+        padding-bottom: 4rem;
+    }
+
+    .mini .nav-mainmenu {
+        display: none;
+    }
+}
+
+/*
+main =============*/
+.main {
+    position: absolute;
+    top: 3rem;
+    left: 26rem;
+    right: 6rem;
+    transition: left 0.3s, right 0.3s;
+    min-height: 100%;
+}
+
+.mini .main {
+    left: 18.5rem;
+    right: 13.5rem;
+}
+
+.main-postlist {
+    position: absolute;
+    left: 0;
+    width: 78%;
+    /*margin: 0 6%;*/
+}
+
+.main-postlist:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /*left: 114.2857142%;*/
+    left: calc(100% + 3rem);
+    content: ' ';
+    width: 10px;
+    height: 100%;
+    background-color: #00a8c6;
+}
+
+.main-postlist-post {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ccc;
+    background-color: #FFF;
+    min-height: 10rem;
+    padding-top: 2rem;
+}
+
+.main-postlist-post:after {
+    content: ' ';
+    position: absolute;
+    top: 2rem;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border: 1rem solid transparent;
+    border-left-color: #FFF;
+    box-shadow: 0 0 10px #ccc inset;
+}
+
+.main-postlist-post + .main-postlist-post {
+    margin-top: 2rem;
+}
+
+.main-postlist-post-header {
+    padding: 0 2rem;
+}
+
+.main-postlist-post-header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.main-postlist-post-header ul {
+    overflow: hidden;
+}
+
+.main-postlist-post-header ul li {
+    font-size: 1rem;
+    line-height: 1rem;
+    float: left;
+    margin-right: 1rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.main-postlist-post-header ul li:hover {
+    cursor: pointer;
+}
+
+.main-postlist-post-content {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-indent: 2em;
+    padding: 0 2rem;
+    clear: both;
+}
+
+.main-postlist-post-footer {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.main-postlist-post:before {
+
+}
+
+.main-postlist-post:after {
+
+}
+
+.main-postlist-post-time {
+    position: absolute;
+    top: 1rem;
+    font-size: 2rem;
+    /*left: 128.5714285714%;*/
+    left: calc(100% + 6rem);
+}
+
+@media only screen and (max-width: 70em) {
+    .main {
+        left: 12.5rem;
+        right: 2.5rem;
+        transition: none;
+    }
+
+    .mini .main {
+        left: 10rem;
+        right: 5rem;
+    }
+
+    .main-postlist {
+        width: 100%;
+    }
+
+    .main-postlist:after {
+        display: none;
+    }
+
+    .main-postlist-post:after {
+        display: none;
+    }
+
+    .main-postlist-post-time {
+        left: 0;
+        top: -2rem;
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 30em ) {
+
+    .main {
+        left: 2rem;
+        right: 2rem;
+    }
+
+    .mini .main {
+        left: 2rem;
+        right: 2rem;
+    }
+
+}

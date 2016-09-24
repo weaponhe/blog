@@ -1,0 +1,35 @@
+.archive_list {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.archive_list h2 {
+    text-align: center;
+    border-bottom: 1px dashed #aaa;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.archive_list li {
+    margin: 10px 0;
+}
+
+.archive_list li a {
+    font-size: 17px;
+}
+
+.archive_list li span {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.archive_list li span a {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.archive_list li span a:hover {
+    color: #ECAD9E;
+    text-decoration: underline;
+}

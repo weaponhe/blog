@@ -1,0 +1,21 @@
+<%- include header %>
+<ul class="main-postlist">
+    <% posts.forEach(function(post){ %>
+    <li class="main-postlist-post">
+        <div class="main-postlist-post-time"><%= post.time %></div>
+        <div class="main-postlist-post-header">
+            <a href="/post/<%= post._id %>"><h1><%= post.title %></h1></a>
+            <ul class="clearfix">
+                <% post.tags.forEach(function(tag){ %>
+                <li><a href="/tag/<%= tag %>"><%= tag %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+        <p class="main-postlist-post-content">
+            <%= post.intro %>
+        </p>
+        <div class="main-postlist-post-footer"><a href="/post/<%= post._id %>">READ MORE</a></div>
+    </li>
+    <% }); %>
+</ul>
+<%- include footer %>

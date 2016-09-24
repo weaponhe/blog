@@ -22,6 +22,7 @@ Post.prototype.save = function(callback) {
 		html: this.html,
 		time: new Date()
 	};
+
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
 			return callback(err);

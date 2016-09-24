@@ -1,0 +1,39 @@
+<% include header %>
+<!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+<div class="main-book">
+    <% books.forEach(function(book){ %>
+    <div class="card" href="#">
+        <h1 class="card-header">
+            <span class="card-header-name"><%= book.title %></span>
+        </h1>
+        <div class="card-content">
+            <table>
+                <tr>
+                    <td rowspan="5">
+                        <img src="<%= book.img %>"/>
+                    </td>
+                    <td>作 者</td>
+                    <td><%= book.author %></td>
+                </tr>
+                <tr>
+                    <td>出版社</td>
+                    <td><%= book.publisher %></td>
+                </tr>
+                <tr>
+                    <td>链 接</td>
+                    <td><a href="<%= book.link %>">图书链接</a></td>
+                </tr>
+                <tr>
+                    <td>时 间</td>
+                    <td>2016-09-24</td>
+                </tr>
+                <tr>
+                    <td>状 态</td>
+                    <td><%= book.status %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <% }) %>
+</div>
+<% include footer %>

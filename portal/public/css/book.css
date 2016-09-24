@@ -1,0 +1,55 @@
+.main-book {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.main-book .card {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.main-book .card:before {
+    display: none;
+}
+
+.main-book .card-header {
+    font-size: 2rem;
+    line-height: 2rem;
+    height: 2rem;
+    background-color: #f5f5f5;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.main-book img {
+    display: block;
+    width: 100%;
+}
+
+.main-book table {
+    table-layout: fixed;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+    border-collapse: collapse;
+
+}
+
+.main-book table td {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-width: 0px 1px 1px 0px;
+}
+
+@media only screen and (max-width: 65rem) {
+    .main-book {
+        width: 100%;
+    }
+}
+
+
+

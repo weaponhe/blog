@@ -1,0 +1,237 @@
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover,
+a.focus,
+a.active {
+    color: #4a75b5;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
+    color: #666;
+    background-color: #ededed;
+    overflow-x: hidden;
+}
+
+.wrapper90 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper80 {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.bc-red {
+    background-color: red;
+}
+
+/*
+nav =============*/
+.nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20rem;
+    background-color: #FFF;
+    transition: width 0.3s;
+    overflow: auto;
+    z-index: 10;
+}
+
+.mini .nav {
+    width: 5rem;
+}
+
+/*
+nav-toggle =============*/
+.nav-toggle {
+    height: 3rem;
+    line-height: 3rem;
+    background-color: #222;
+    text-align: center;
+    color: #EEE;
+}
+
+.nav-toggle:hover {
+    cursor: pointer;
+}
+
+/*
+nav-profile =============*/
+.nav-profile {
+    text-align: center;
+    margin-top: 1rem;
+    transition: margin-top 0.3s;
+}
+
+.nav-profile-img {
+    width: 6rem;
+    border-radius: 50%;
+    transition: width 0.3s;
+}
+
+.mini .nav-profile-img {
+    width: 3rem;
+}
+
+.mini .nav-profile-name {
+    display: none;
+}
+
+/*
+nav-mainmenu =============*/
+.nav-mainmenu {
+    padding: 1rem;
+}
+
+.mini .nav-mainmenu {
+    padding: 1rem 0;
+}
+
+.nav-mainmenu-ul {
+    width: 48%;
+}
+
+.nav-mainmenu-ul:first-child {
+    float: left;
+}
+
+.nav-mainmenu-ul:last-child {
+    float: right;
+}
+
+.mini .nav-mainmenu-ul {
+    float: none;
+    width: 100%;
+}
+
+.nav-mainmenu-ul li a {
+    text-align: center;
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
+}
+
+.mini .nav-mainmenu-ul li a {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-mainmenu-ul li a i {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.mini .nav-mainmenu-ul li a i {
+    margin-right: auto;
+}
+
+.nav-mainmenu-ul li a span {
+    font-size: 1.5rem;
+}
+
+.mini .nav-mainmenu-ul li a span {
+    display: none;
+}
+
+.nav-mainmenu-ul li a:hover {
+    background-color: #555;
+    color: #FFF;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 30.0625rem) and (max-width: 70em) {
+
+    .nav {
+        width: 10rem;
+        transition: none;
+    }
+
+    .mini .nav {
+        width: 5rem;
+    }
+
+    .nav-profile-img {
+        width: 3rem;
+    }
+
+    .nav-profile-name {
+        display: none;
+    }
+
+    .nav-mainmenu {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .nav-mainmenu-ul {
+        width: 100%;
+    }
+
+    .nav-mainmenu-ul li a {
+        padding: 1rem 0;
+    }
+}
+
+@media only screen and (max-width: 30em ) {
+
+    .nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100% !important;
+        min-height: 3rem;
+        box-shadow: 0 0 5px #333;
+    }
+
+    .nav-toggle {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .nav-profile {
+        display: none;
+    }
+
+    .nav-mainmenu {
+        padding-bottom: 4rem;
+    }
+
+    .mini .nav-mainmenu {
+        display: none;
+    }
+}
