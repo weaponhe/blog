@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded());
 route(app, express.Router);
 
 var port = 3000;
-app.listen(port, function () {
+app.listen(port, '0.0.0.0', function () {
     console.log("the server start at port" + port);
 })
 ;

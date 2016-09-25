@@ -1,22 +1,24 @@
 <% include header %>
-<div class="archive_list">
+<div class="main-archive">
     <% var lastYear = 0 %>
     <% posts.forEach(function(post, index){ %>
-    <% if(post.time.getFullYear() != lastYear){ %>
-    <% lastYear = post.time.getFullYear() %>
-    <h2><%= lastYear %>年</h2>
+    <% if(post.time.year != lastYear){ %>
+    <% lastYear = post.time.year %>
+    <h2 class="archive-year"><%= lastYear %>年</h2>
     <% } %>
-    <li><a href="/p/<%= post._id %>"><%= post.title %></a><span>(
-            <%= post.time.getFullYear() %>-<%= post.time.getMonth() + 1 %>-<%= post.time.getDate() %>
-            | tag:
-            <% post.tags.forEach(function(tag){ %>
-            <a href="/tag/<%= tag %>">
-	        <%= tag %>
-	    </a>
-            <% }) %>
-            )
-		</span></li>
-
+    <li class="archive-post">
+        <a class="archive-post-title" href="/post/<%= post._id %>"><%= post.title %></a>
+        <span class="archive-post-meta">
+            <span class="archive-post-time"><%= post.time.day %></span>
+            <span class="archive-post-tag">
+                <% post.tags.forEach(function(tag){ %>
+                <a href="/tag/<%= tag %>">
+	            <%= tag %>
+                </a>
+                <% }) %>
+            </span>
+        </span>
+    </li>
     <% }) %>
 </div>
 <% include footer %>

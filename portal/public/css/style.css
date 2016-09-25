@@ -8,37 +8,14 @@ li {
 }
 
 a {
-    color: #666;
+    color: #4a75b5;
     text-decoration: none;
 }
 
 a:hover,
 a.focus,
 a.active {
-    color: #4a75b5;
-}
-
-html {
-    font-size: 62.5%;
-}
-
-body {
-    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
-    color: #666;
-    background-color: #ededed;
-    overflow-x: hidden;
-}
-
-.wrapper90 {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.wrapper80 {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    color: indianred;
 }
 
 .clearfix:before,
@@ -51,8 +28,15 @@ body {
     clear: both;
 }
 
-.bc-red {
-    background-color: red;
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
+    color: #666;
+    /*background-color: #ededed;*/
+    overflow-x: hidden;
 }
 
 /*
@@ -252,18 +236,45 @@ main =============*/
     right: 13.5rem;
 }
 
+@media only screen and (max-width: 70em) {
+    .main {
+        left: 12.5rem;
+        right: 2.5rem;
+        transition: none;
+    }
+
+    .mini .main {
+        left: 10rem;
+        right: 5rem;
+    }
+}
+
+@media only screen and (max-width: 30em ) {
+
+    .main {
+        left: 2rem;
+        right: 2rem;
+        top: 1rem;
+    }
+
+    .mini .main {
+        left: 2rem;
+        right: 2rem;
+    }
+}
+
+/*
+post =============*/
 .main-postlist {
     position: absolute;
     left: 0;
     width: 78%;
-    /*margin: 0 6%;*/
 }
 
 .main-postlist:after {
     position: absolute;
     top: 0;
     bottom: 0;
-    /*left: 114.2857142%;*/
     left: calc(100% + 3rem);
     content: ' ';
     width: 10px;
@@ -349,22 +360,10 @@ main =============*/
     position: absolute;
     top: 1rem;
     font-size: 2rem;
-    /*left: 128.5714285714%;*/
     left: calc(100% + 6rem);
 }
 
 @media only screen and (max-width: 70em) {
-    .main {
-        left: 12.5rem;
-        right: 2.5rem;
-        transition: none;
-    }
-
-    .mini .main {
-        left: 10rem;
-        right: 5rem;
-    }
-
     .main-postlist {
         width: 100%;
     }
@@ -378,22 +377,268 @@ main =============*/
     }
 
     .main-postlist-post-time {
-        left: 0;
-        top: -2rem;
-        font-size: 2rem;
+        position: static;
+        padding: 0 2rem;
+        font-size: 1rem;
+        color: #aaa;
     }
 }
 
 @media only screen and (max-width: 30em ) {
+}
 
-    .main {
-        left: 2rem;
-        right: 2rem;
+/*
+archive =============*/
+.main-archive {
+    width: 70%;
+    margin: 0 auto;
+    font-family: Georgia, serif;
+}
+
+.archive-year {
+    text-align: center;
+    border-bottom: 1px dashed #aaa;
+    padding-bottom: 1rem;
+    margin: 0 auto 1rem;
+    font-size: 2rem;
+}
+
+.archive-post {
+    padding: 0.3rem 1rem;
+    list-style-type: square;
+}
+
+.archive-post-title {
+    font-size: 1.6rem;
+}
+
+.archive-post-time:before {
+    content: '(';
+}
+
+.archive-post-tag:before {
+    content: ' · 标签:';
+}
+
+.archive-post-tag a {
+    color: #666;
+}
+
+.archive-post-tag a:hover,
+.archive-post-tag a:focus,
+.archive-post-tag a:active {
+    color: indianred;
+}
+
+.archive-post-tag:after {
+    content: ')';
+}
+
+@media only screen and (max-width: 30em ) {
+    .main-archive {
+        width: 100%;
     }
 
-    .mini .main {
-        left: 2rem;
-        right: 2rem;
+    .archive-year {
+        font-size: 2rem;
+    }
+
+    .archive-post-meta {
+        display: none;
     }
 
 }
+
+/*
+tag =============*/
+.main-tag{
+    width: 70%;
+    margin: 0 auto;
+    font-family: Georgia, serif;
+}
+
+.tag_panel {
+    background-color: #f5f5f5;
+    border-radius: 2px;
+    padding: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.tag_list a {
+    margin: 0 0.5rem;
+}
+
+@media only screen and (max-width: 30em ) {
+    .main-tag {
+        width: 100%;
+    }
+}
+/*
+demo =============*/
+.main-demo {
+    font-size: 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.card {
+    display: block;
+    position: relative;
+    top: 0;
+    display: inline-block;
+    overflow: hidden;
+    width: calc(25% - 1.2rem);
+    height: 15rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 0 10px #ccc;
+    background-color: #FFF;
+    font-size: 1rem;
+    margin-left: 1.6rem;
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 0 50px #999;
+}
+
+.card:nth-child(4n+1) {
+    margin-left: 0;
+}
+
+.card:before {
+    content: ' ';
+    float: right;
+    right: 0;
+    width: 0;
+    height: 0;
+    border: 2rem solid transparent;
+    border-right-color: #0084b4;
+    border-top-color: #0084b4;
+}
+
+@media only screen and (max-width: 90rem) {
+    .card {
+        width: calc(33.33333% - 1rem);
+    }
+
+    .card:nth-child(n) {
+        margin-left: 1.5rem;
+    }
+
+    .card:nth-child(3n+1) {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 65rem) {
+    .card {
+        width: calc(50% - 1rem);
+    }
+
+    .card:nth-child(n) {
+        margin-left: 2rem;
+    }
+
+    .card:nth-child(2n+1) {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 50rem) {
+    .card {
+        width: 100%;
+    }
+
+    .card:nth-child(n) {
+        margin-left: 0;
+    }
+}
+
+.card-header {
+    margin: 0;
+    padding: 1rem 4rem 0 1.5rem;
+    line-height: 3rem;
+    height: 3rem;
+    font-size: 2.5rem;
+    color: #0084b4;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.card-content {
+    margin: 0;
+    padding: 1rem 1.5rem 0.5rem;
+    font-size: 1.5rem;
+}
+
+.card-header-name {
+    vertical-align: middle;
+}
+
+.card-header-tag {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    vertical-align: middle;
+    background-color: #0084b4;
+    color: #FFF;
+}
+
+.main-book {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.main-book .card {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.main-book .card:before {
+    display: none;
+}
+
+.main-book .card-header {
+    font-size: 2rem;
+    line-height: 2rem;
+    height: 2rem;
+    background-color: #f5f5f5;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.main-book img {
+    display: block;
+    width: 100%;
+}
+
+.main-book table {
+    table-layout: fixed;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+    border-collapse: collapse;
+
+}
+
+.main-book table td {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-width: 0px 1px 1px 0px;
+}
+
+@media only screen and (max-width: 65rem) {
+    .main-book {
+        width: 100%;
+    }
+}
+
+
+

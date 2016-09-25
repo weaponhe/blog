@@ -4,18 +4,16 @@ var url = require('../settings').getUrl();
 var test = require('assert');
 var Datekit = require('jsuite').Datekit;
 
-var Book = function (book) {
-    this.title = book.title;
-    this.author = book.author;
-    this.publisher = book.publisher;
-    this.link = book.link;
-    this.status = book.status;
-    this.img = book.img;
+var Demo = function (demo) {
+    this.title = demo.title;
+    this.tag = demo.tag;
+    this.link = demo.link;
+    this.intro = demo.intro;
 };
 
-module.exports = Book;
+module.exports = Demo;
 
-Book.prototype.save = function (callback) {
+Demo.prototype.save = function (callback) {
     var date = new Date();
     var time = {
         date: date,
@@ -27,11 +25,9 @@ Book.prototype.save = function (callback) {
     };
     var doc = {
         title: this.title,
-        author: this.author,
-        publisher: this.publisher,
+        tag: this.tag,
         link: this.link,
-        status: this.status,
-        img: this.img,
+        intro: this.intro,
         time: time
     };
 
@@ -39,7 +35,7 @@ Book.prototype.save = function (callback) {
         if (err) {
             return callback(err);
         }
-        var col = db.collection('books');
+        var col = db.collection('demos');
         col.insertOne(doc, function (err, r) {
             db.close();
             if (err) {
@@ -50,12 +46,12 @@ Book.prototype.save = function (callback) {
     });
 };
 
-Book.remove = function (_id, callback) {
+Demo.remove = function (_id, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
         }
-        var col = db.collection('books');
+        var col = db.collection('demos');
         col.deleteOne({
             _id: ObjectId(_id)
         }, function (err, r) {
@@ -67,14 +63,14 @@ Book.remove = function (_id, callback) {
     });
 };
 
-Book.update = function (_id, doc, callback) {
+Demo.update = function (_id, doc, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
         }
         delete doc.time;
         delete doc._id;
-        var col = db.collection('books');
+        var col = db.collection('demos');
         col.findOneAndUpdate({
             _id: ObjectId(_id)
         }, {
@@ -89,12 +85,12 @@ Book.update = function (_id, doc, callback) {
     });
 };
 
-Book.getList = function (callback) {
+Demo.getList = function (callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
         }
-        var col = db.collection('books');
+        var col = db.collection('demos');
         col.find().sort({
             time: -1
         }).toArray(function (err, docs) {

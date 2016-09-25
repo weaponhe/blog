@@ -2,14 +2,17 @@
 <ul class="main-postlist">
     <% posts.forEach(function(post){ %>
     <li class="main-postlist-post">
-        <div class="main-postlist-post-time"><%= post.time %></div>
         <div class="main-postlist-post-header">
             <a href="/post/<%= post._id %>"><h1><%= post.title %></h1></a>
-            <ul class="clearfix">
-                <% post.tags.forEach(function(tag){ %>
-                <li><a href="/tag/<%= tag %>"><%= tag %></a></li>
-                <% }) %>
-            </ul>
+            <!--<ul class="clearfix">-->
+            <!--<% post.tags.forEach(function(tag){ %>-->
+            <!--<li><a href="/tag/<%= tag %>"><%= tag %></a></li>-->
+            <!--<% }) %>-->
+            <!--</ul>-->
+        </div>
+        <div class="main-postlist-post-time">
+            <span class="main-postlist-post-time-year"><%= post.time.year %></span>
+            <span class="main-postlist-post-time-monthday"><%= post.time.month_day %></span>
         </div>
         <p class="main-postlist-post-content">
             <%= post.intro %>

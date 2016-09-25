@@ -66,8 +66,25 @@
     z-index: 5;
     display: none;
 }
+#book_modal_panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
 
-#modal_panel {
+#demo_modal_panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+#project_modal_panel {
     position: absolute;
     top: 0;
     bottom: 0;

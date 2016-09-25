@@ -14,5 +14,5 @@ gulp.task('build', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('./public/javascripts/admin/*.js', ['build']);
+	gulp.watch('./dashboard/public/js/*.js', ['build']);
 });

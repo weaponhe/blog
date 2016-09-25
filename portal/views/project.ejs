@@ -1,81 +1,20 @@
 <% include header %>
 <div class="main-project">
-    <a class="card" href="#">
+    <!--<a class="card" href="#">-->
+        <!--<h1 class="card-header">-->
+            <!--<span class="card-header-name">Blog</span>-->
+        <!--</h1>-->
+        <!--<p class="card-content">我的博客。</p>-->
+    <!--</a>-->
+    <% docs.forEach(function (doc) { %>
+    <a class="card" href="<%= doc.link %>">
         <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
+            <span class="card-header-name"><%= doc.title %></span>
+            <span class="card-header-tag"><%= doc.tag %></span>
         </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Blog</span>
-        </h1>
-        <p class="card-content">我的博客。</p>
+        <p class="card-content"><%= doc.intro %></p>
     </a>
+    <% }) %>
 
 </div>
 <% include footer %>

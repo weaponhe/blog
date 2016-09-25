@@ -11,12 +11,7 @@
     </a>
     <% }) %>
     |
-    <%= post.time.getFullYear() %>-
-    <%= post.time.getMonth() + 1 %>-
-    <%= post.time.getDate() %>
-    <%= post.time.getHours() %>:
-    <%= post.time.getMinutes() %>:
-    <%= post.time.getSeconds() %>
+    <%= post.time.day %>
 </div>
 <div class="markdown-body">
     <%- post.html %>

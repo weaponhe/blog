@@ -1,13 +1,15 @@
 var path = require('path');
 var Post = require('../model/post'),
-    Book = require('../model/book');
+    Book = require('../model/book'),
+    Demo = require('../model/demo'),
+    Project = require('../model/project');
+var Datekit = require('jsuite').Datekit;
 module.exports = function (app) {
     app.get('/', function (req, res, next) {
         Post.getLatestTen(function (err, posts) {
             if (err) {
                 return next(err);
             }
-            posts.tags = posts.tags || [];
             res.render(path.join(__dirname, 'views/index'), {
                 title: "首页",
                 posts: posts
@@ -32,13 +34,11 @@ module.exports = function (app) {
         });
     });
 
-
     app.get('/archive', function (req, res, next) {
         Post.getArchive(function (err, posts) {
             if (err) {
                 return next(err);
             }
-            posts.tags = posts.tags || [];
             res.render(path.join(__dirname, 'views/archive'), {
                 title: "文章-归档",
                 posts: posts
@@ -77,7 +77,7 @@ module.exports = function (app) {
     });
 
     app.get('/book', function (req, res, next) {
-        Book.getAll(function (err, books) {
+        Book.getList(function (err, books) {
             if (err) {
                 return next(err);
             }
@@ -88,15 +88,27 @@ module.exports = function (app) {
         });
     });
     app.get('/project', function (req, res, next) {
-        res.render(path.join(__dirname, 'views/project'), {
-            title: "项目"
+
+        Project.getList(function (err, docs) {
+            if (err) {
+                return next(err);
+            }
+            res.render(path.join(__dirname, 'views/demo'), {
+                title: "项目",
+                docs: docs
+            });
         });
     });
     app.get('/demo', function (req, res, next) {
-        res.render(path.join(__dirname, 'views/demo'), {
-            title: "Demo平台"
+        Demo.getList(function (err, docs) {
+            if (err) {
+                return next(err);
+            }
+            res.render(path.join(__dirname, 'views/demo'), {
+                title: "Demo平台",
+                docs: docs
+            });
         });
     });
-
     return app;
 }

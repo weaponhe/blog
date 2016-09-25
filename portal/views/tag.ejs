@@ -1,33 +1,31 @@
 <% include header %>
-
-<div class="tag_wrapper">
+<div class="main-tag">
     <div class="tag_panel">
-        <span class="tag_title">Tags:</span>
         <span class="tag_list">
             <% tags.forEach(function(tag, index){ %>
             <a href="/tag/<%= tag %>"><%= tag %></a>
             <% }) %>
         </span>
     </div>
-</div>
-<div class="archive_list">
     <% var lastYear = 0 %>
     <% posts.forEach(function(post, index){ %>
-    <% if(post.time.getFullYear() != lastYear){ %>
-    <% lastYear = post.time.getFullYear() %>
-    <h2><%= lastYear %>年</h2>
+    <% if(post.time.yaer != lastYear){ %>
+    <% lastYear = post.time.year %>
+    <h2 class="archive-year"><%= lastYear %>年</h2>
     <% } %>
-    <li><a href="/p/<%= post._id %>"><%= post.title %></a><span>(
-            <%= post.time.getFullYear() %>-<%= post.time.getMonth() + 1 %>-<%= post.time.getDate() %>
-            | tag:
-            <% post.tags.forEach(function(tag){ %>
-            <a href="/tag/<%= tag %>">
-	        <%= tag %>
-	    </a>
-            <% }) %>
-            )
-		</span></li>
-
+    <li class="archive-post">
+        <a class="archive-post-title" href="/post/<%= post._id %>"><%= post.title %></a>
+        <span class="archive-post-meta">
+            <span class="archive-post-time"><%= post.time.day %></span>
+            <span class="archive-post-tag">
+                <% post.tags.forEach(function(tag){ %>
+                <a href="/tag/<%= tag %>">
+	            <%= tag %>
+                </a>
+                <% }) %>
+            </span>
+        </span>
+    </li>
     <% }) %>
 </div>
 <% include footer %>

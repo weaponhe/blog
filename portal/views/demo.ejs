@@ -1,93 +1,13 @@
 <% include header %>
 <div class="main-demo">
-    <a class="card" href="#">
+    <% docs.forEach(function (doc) { %>
+    <a class="card" href="<%= doc.link %>">
         <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
+            <span class="card-header-name"><%= doc.title %></span>
+            <span class="card-header-tag"><%= doc.tag %></span>
         </h1>
-        <p class="card-content">A toolkit of Dom management</p>
+        <p class="card-content"><%= doc.intro %></p>
     </a>
-    <a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a>
-    <a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a><a class="card" href="#">
-        <h1 class="card-header">
-            <span class="card-header-name">Domix</span>
-            <span class="card-header-tag">JS</span>
-        </h1>
-        <p class="card-content">A toolkit of Dom management</p>
-    </a>
-
-
+    <% }) %>
 </div>
 <% include footer %>
