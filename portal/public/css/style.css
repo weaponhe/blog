@@ -640,7 +640,7 @@ demo =============*/
     box-shadow: none;
     border-radius: 5px;
     text-align: center;
-    margin-left: 1.5rem;
+    margin-left: 0;
 }
 
 .main-book .card:before {
