@@ -35,7 +35,7 @@ html {
 body {
     font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
     color: #666;
-    /*background-color: #ededed;*/
+    background-color: #ededed;
     overflow-x: hidden;
 }
 
@@ -51,6 +51,11 @@ nav =============*/
     transition: width 0.3s;
     overflow: auto;
     z-index: 10;
+
+}
+
+.nav a {
+    color: #666;
 }
 
 .mini .nav {
@@ -279,7 +284,8 @@ post =============*/
     content: ' ';
     width: 10px;
     height: 100%;
-    background-color: #00a8c6;
+    border-radius: 5px;
+    background-color: rgba(6, 6, 6, 0.3);
 }
 
 .main-postlist-post {
@@ -287,7 +293,7 @@ post =============*/
     border-radius: 5px;
     box-shadow: 0 0 10px #ccc;
     background-color: #FFF;
-    min-height: 10rem;
+    /*min-height: 10rem;*/
     padding-top: 2rem;
 }
 
@@ -337,7 +343,7 @@ post =============*/
 .main-postlist-post-content {
     font-size: 1.5rem;
     line-height: 2rem;
-    text-indent: 2em;
+    /*text-indent: 2em;*/
     padding: 0 2rem;
     clear: both;
 }
@@ -359,8 +365,17 @@ post =============*/
 .main-postlist-post-time {
     position: absolute;
     top: 1rem;
-    font-size: 2rem;
     left: calc(100% + 6rem);
+}
+
+.main-postlist-post-time-year {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.main-postlist-post-time-monthday {
+    font-size: 2rem;
+    white-space: nowrap;
 }
 
 @media only screen and (max-width: 70em) {
@@ -379,12 +394,37 @@ post =============*/
     .main-postlist-post-time {
         position: static;
         padding: 0 2rem;
-        font-size: 1rem;
         color: #aaa;
+        font-size: 0;
+    }
+
+    .main-postlist-post-time-year {
+        font-size: 1rem;
+    }
+
+    .main-postlist-post-time-monthday {
+        font-size: 1rem;
+    }
+
+    .main-postlist-post-time-monthday:before {
+        content: '-';
     }
 }
 
 @media only screen and (max-width: 30em ) {
+}
+
+/*
+post =============*/
+.post-title {
+    font-size: 2.5rem;
+    margin: 1rem 0 0.2rem;
+}
+
+.post-meta {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #aaa;
 }
 
 /*
@@ -451,7 +491,7 @@ archive =============*/
 
 /*
 tag =============*/
-.main-tag{
+.main-tag {
     width: 70%;
     margin: 0 auto;
     font-family: Georgia, serif;
@@ -474,6 +514,7 @@ tag =============*/
         width: 100%;
     }
 }
+
 /*
 demo =============*/
 .main-demo {
@@ -599,6 +640,7 @@ demo =============*/
     box-shadow: none;
     border-radius: 5px;
     text-align: center;
+    margin-left: 1.5rem;
 }
 
 .main-book .card:before {
@@ -640,5 +682,10 @@ demo =============*/
     }
 }
 
+@media only screen and (max-width: 30em ) {
+    .book-img {
+        display: none;
+    }
+}
 
 

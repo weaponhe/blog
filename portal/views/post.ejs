@@ -1,12 +1,12 @@
 <%- include header %>
 <link rel="stylesheet" href="/github-markdown-css/github-markdown.css"/>
 <link rel="stylesheet" href="/highlight.js/styles/github.css"/>
-<h1 class="post-title" style="border-bottom:1px dashed #eee;padding-bottom:10px;margin-bottom:10px">
+<h1 class="post-title">
     <%= post.title %>
 </h1>
-<div>
+<div class="post-meta">
     <% post.tags.forEach(function(tag){ %>
-    <a href="/tags/<%= tag %>">
+    <a href="/tag/<%= tag %>">
         <%= tag %>
     </a>
     <% }) %>
