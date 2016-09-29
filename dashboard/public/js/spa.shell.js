@@ -12,7 +12,10 @@ var $ = require('jquery'),
         main_html: String() +
         '    	<div id="mask"></div>' +
         '    	<div id="nav"></div>' +
-        '    	<div id="header"><h4>活到老，学到老，改变世界。</h4></div>' +
+        '    	<div id="header">' +
+        '           <a href="javascript:history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
+        '           <a target="_blank" href="/"><img src="/img/avatar.jpg" /></a>' +
+        '       </div>' +
         '    	<div id="main">' +
         '    		<div id="post_panel"></div>' +
         '    		<div id="book_panel"></div>' +
