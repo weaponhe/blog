@@ -10,7 +10,6 @@
 #spa-nav li {
     font-size: 18px;
     line-height: 50px;
-    letter-spacing:8px;
     cursor: pointer;
     font-weight: bolder;
 }

@@ -102,9 +102,9 @@ initModule = function ($container) {
     // module init
     Nav.configModule({
         nav_map: {
-            posts: '文章',
-            books: '书单',
-            projects: '项目',
+            posts: '文 章',
+            books: '书 单',
+            projects: '项 目',
             demos: 'Demo'
         }
     });
