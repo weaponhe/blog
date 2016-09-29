@@ -9,7 +9,7 @@
     </div>
     <% var lastYear = 0 %>
     <% posts.forEach(function(post, index){ %>
-    <% if(post.time.yaer != lastYear){ %>
+    <% if(post.time.year != lastYear){ %>
     <% lastYear = post.time.year %>
     <h2 class="archive-year"><%= lastYear %>年</h2>
     <% } %>

@@ -318,7 +318,7 @@ post =============*/
 }
 
 .main-postlist-post-header h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 0;
 }
 
@@ -349,7 +349,7 @@ post =============*/
 }
 
 .main-postlist-post-footer {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 1rem 2rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
