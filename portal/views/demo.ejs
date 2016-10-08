@@ -4,7 +4,9 @@
     <a class="card" href="<%= doc.link %>">
         <h1 class="card-header">
             <span class="card-header-name"><%= doc.title %></span>
+            <% if(doc.tag.trim()){ %>
             <span class="card-header-tag"><%= doc.tag %></span>
+            <% } %>
         </h1>
         <p class="card-content"><%= doc.intro %></p>
     </a>

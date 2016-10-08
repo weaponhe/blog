@@ -93,7 +93,7 @@ module.exports = function (app) {
             if (err) {
                 return next(err);
             }
-            res.render(path.join(__dirname, 'views/demo'), {
+            res.render(path.join(__dirname, 'views/project'), {
                 title: "项目",
                 docs: docs
             });
