@@ -1,9 +1,27 @@
+var path = require('path');
 var Post = require('../model/post');
 var Book = require('../model/book');
 var Demo = require('../model/demo');
 var Project = require('../model/project');
 
+
 module.exports = function (router) {
+
+    router.get('/', checkLogin);
+    router.get('/', function (req, res, next) {
+        res.render(path.join(__dirname, 'views/index'));
+    });
+
+    router.get('/login', function (req, res, next) {
+        res.render(path.join(__dirname, 'views/login'));
+    });
+
+    router.post('/login',
+        passport.authenticate('local', {failureRedirect: '/admin/login'}),
+        function (req, res) {
+            res.redirect('/admin');
+        });
+
     router.post('/posts/add', function (req, res, next) {
         var doc = new Post(req.body);
         doc.save(function (err, doc) {
@@ -233,3 +251,50 @@ module.exports = function (router) {
     });
     return router;
 };
+
+var passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
+var User = require('../model/user');
+
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        User.findOne({username: username}, function (err, user) {
+            if (err) {
+                console.log(1);
+                return done(err);
+            }
+            if (!user) {
+                console.log(2);
+                return done(null, false, {message: 'Incorrect username.'});
+            }
+            if (!user.password === password) {
+                console.log(3);
+                return done(null, false, {message: 'Incorrect password.'});
+            }
+            return done(null, user);
+        });
+    }
+));
+
+passport.serializeUser(function (user, cb) {
+    cb(null, user._id);
+});
+
+passport.deserializeUser(function (_id, cb) {
+    User.findOneById(_id, function (err, user) {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, user);
+    });
+});
+
+function checkLogin(req, res, next) {
+    console.log(req.user);
+    if (!req.user) {
+        res.redirect('/admin/login');
+    }
+    else {
+        next();
+    }
+}

@@ -68,7 +68,7 @@ Book.remove = function (_id, callback) {
 };
 
 Book.update = function (_id, doc, callback) {
-    MongoClient.connect(url, function (err, db) {
+    MongoClient.connect(url, function (err) {
         if (err) {
             return callback(err);
         }
