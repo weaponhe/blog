@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //Routing
 route(app, express.Router);
-var port = 3000;
-app.listen(port, '0.0.0.0', function () {
+var port = 3001;
+app.listen(port, function () {
     console.log("the server start at port" + port);
 });
