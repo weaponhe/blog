@@ -522,34 +522,31 @@ demo =============*/
     /*width: 100%;*/
     /*margin: 0 auto;*/
 }
+
 .main-project {
     font-size: 0;
 }
 
+.showcase {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
 .card {
-    display: block;
-    position: relative;
-    top: 0;
-    display: inline-block;
-    overflow: hidden;
-    width: calc(25% - 1.2rem);
     height: 15rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
     box-shadow: 0 0 10px #ccc;
     background-color: #FFF;
     font-size: 1rem;
-    margin-left: 1.6rem;
     transition: 0.3s;
+    margin: 1em;
+    flex: 1 1 24%;
 }
 
 .card:hover {
     box-shadow: 0 0 50px #999;
 }
 
-.card:nth-child(4n+1) {
-    margin-left: 0;
-}
 
 .card:before {
     content: ' ';
@@ -564,39 +561,19 @@ demo =============*/
 
 @media only screen and (max-width: 90rem) {
     .card {
-        width: calc(33.33333% - 1rem);
-    }
-
-    .card:nth-child(n) {
-        margin-left: 1.5rem;
-    }
-
-    .card:nth-child(3n+1) {
-        margin-left: 0;
+        width: 32%;
     }
 }
 
 @media only screen and (max-width: 65rem) {
     .card {
-        width: calc(50% - 1rem);
-    }
-
-    .card:nth-child(n) {
-        margin-left: 2rem;
-    }
-
-    .card:nth-child(2n+1) {
-        margin-left: 0;
+        width: 50%;
     }
 }
 
 @media only screen and (max-width: 50rem) {
     .card {
         width: 100%;
-    }
-
-    .card:nth-child(n) {
-        margin-left: 0;
     }
 }
 
