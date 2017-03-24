@@ -14,7 +14,7 @@ app.enable('verbose errors');
 if ('production' == app.settings.env)
     app.disable('verbose errors');
 
-app.use(require('morgan')('combined'));
+// app.use(require('morgan')('combined'));
 app.use(express.static(path.join(__dirname, 'portal', 'public')));
 app.use(express.static(path.join(__dirname, 'dashboard', 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
