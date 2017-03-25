@@ -108,20 +108,7 @@ nav-mainmenu =============*/
     padding: 1rem 0;
 }
 
-.nav-mainmenu-ul {
-    width: 48%;
-}
-
-.nav-mainmenu-ul:first-child {
-    float: left;
-}
-
-.nav-mainmenu-ul:last-child {
-    float: right;
-}
-
 .mini .nav-mainmenu-ul {
-    float: none;
     width: 100%;
 }
 
@@ -130,6 +117,7 @@ nav-mainmenu =============*/
     display: block;
     padding: 1rem 1.5rem;
     white-space: nowrap;
+    transition: all ease .1s;
 }
 
 .mini .nav-mainmenu-ul li a {
@@ -546,7 +534,6 @@ demo =============*/
 .card:hover {
     box-shadow: 0 0 50px #999;
 }
-
 
 .card:before {
     content: ' ';
