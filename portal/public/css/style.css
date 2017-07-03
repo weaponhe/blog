@@ -35,7 +35,7 @@ html {
 body {
     font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
     color: #666;
-    background-color: #ededed;
+    background-color: #f5f7f9;
     overflow-x: hidden;
 }
 
@@ -104,7 +104,7 @@ nav-profile =============*/
 /*
 nav-mainmenu =============*/
 .nav-mainmenu {
-    padding: 1rem;
+    /*padding: 1rem;*/
 }
 
 .mini .nav-mainmenu {
@@ -282,9 +282,8 @@ post =============*/
 .main-postlist-post {
     position: relative;
     border-radius: 5px;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     background-color: #FFF;
-    /*min-height: 10rem;*/
     padding-top: 2rem;
 }
 
@@ -407,16 +406,32 @@ post =============*/
 
 /*
 post =============*/
+.post-wrapper {
+    max-width: 70%;
+    margin: 0 auto;
+}
 .post-title {
-    font-size: 2.5rem;
-    margin: 1rem 0 0.2rem;
+    font-size: 26px;
+    color: #555;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .post-meta {
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px dashed #aaa;
+    text-align: center;
+    color: #999;
+    margin-bottom: 60px;
 }
+
+.post-meta-time {
+    margin-right: 5px;
+}
+
+.post-meta-tag {
+    margin-left: 5px;
+}
+
 
 /*
 archive =============*/
