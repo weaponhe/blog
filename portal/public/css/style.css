@@ -225,6 +225,7 @@ main =============*/
     right: 6rem;
     transition: left 0.3s, right 0.3s;
     min-height: 100%;
+    margin-bottom: 50px;
 }
 
 .mini .main {
@@ -265,6 +266,7 @@ post =============*/
     position: absolute;
     left: 0;
     width: 78%;
+    margin-bottom: 50px;
 }
 
 .main-postlist:after {
@@ -431,7 +433,6 @@ post =============*/
 .post-meta-tag {
     margin-left: 5px;
 }
-
 
 /*
 archive =============*/
