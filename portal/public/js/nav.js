@@ -3,3 +3,4 @@ toggle.onclick = function () {
     toggleClass(document.body, 'mini');
     return false;
 };
+
